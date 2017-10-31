@@ -1,0 +1,10 @@
+image: beevelop/nodejs-python
+clone:
+  depth: 1
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - npm install aerobatic-cli -g
+            - aero deploy
