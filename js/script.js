@@ -13,10 +13,8 @@ function req() {
     self.removeEventListener('click', req);
     var text_sinoni = document.querySelector('#text-sinoni');
     if (text_sinoni && text_sinoni.value) {
-        var params = {};
-        params.lang = 'ru';
-        params.text = text_sinoni.value;
-        httpReq(JSON.stringify(params), function (err, result) {
+        var params = 'lang=ru&text=' + encodeURIComponent(text_sinoni.value);
+        httpReq(params, function (err, result) {
             if (err) {
                 console.log(err);
                 self.innerText = 'Рерайт текста онлайн';
@@ -34,8 +32,8 @@ function req() {
                         clearInterval(r);
                         return;
                     }
-                    params.id = res.result.id;
-                    httpReq(JSON.stringify(params), function (err, result) {
+                    params = 'id=' + res.result.id;
+                    httpReq(params, function (err, result) {
                         if (err) {
                             console.log(err);
                             if (err.status !== 181) {
