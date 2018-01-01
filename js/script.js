@@ -35,7 +35,7 @@ function req() {
                     httpReq(params, function (err, result) {
                         if (err) {
                             console.log(err);
-                            if (err.status !== 181) {
+                            if (err.status !== 400) {
                                 self.innerText = 'Рерайт текста онлайн';
                                 self.addEventListener('click', req);
                             }
