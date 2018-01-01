@@ -6,6 +6,14 @@ function domLoaded() {
     if (start_sinoni) {
         start_sinoni.addEventListener('click', req);
     }
+    var text_sinoni = document.querySelector('#text-sinoni');
+    if (text_sinoni) {
+        var symbol = document.querySelector('#symbol');
+        symbol.textContent = ((text_sinoni.value.replace(/(\s+|<.*?>)/g, '')).length).toString();
+        text_sinoni.oninput = function () {
+            symbol.textContent = ((this.value.replace(/(\s+|<.*?>)/g, '')).length).toString();
+        };
+    }
 }
 function req() {
     var self = this;
