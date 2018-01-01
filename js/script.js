@@ -21,8 +21,7 @@ function req() {
                 self.addEventListener('click', req);
                 return;
             }
-            var res = tryParseJSON(result);
-            if (res.result && res.result.id) {
+            if (result.result && result.result.id) {
                 var i = 0;
                 var r = setInterval(function () {
                     i++;
@@ -32,7 +31,7 @@ function req() {
                         clearInterval(r);
                         return;
                     }
-                    params = 'id=' + res.result.id;
+                    params = 'id=' + result.result.id;
                     httpReq(params, function (err, result) {
                         if (err) {
                             console.log(err);
@@ -42,9 +41,8 @@ function req() {
                             }
                             return;
                         }
-                        var res = tryParseJSON(result);
-                        if (res.result && res.result.text) {
-                            text_sinoni.value = res.result.text;
+                        if (result.result && result.result.text) {
+                            text_sinoni.value = result.result.text;
                         }
                         self.innerText = 'Рерайт текста онлайн';
                         self.addEventListener('click', req);
@@ -65,7 +63,7 @@ function httpReq(params, callback) {
     http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200 && http.responseText) {
-            var res = JSON.parse(http.responseText);
+            var res = tryParseJSON(http.responseText);
             callback(null, res);
         }
         else {
