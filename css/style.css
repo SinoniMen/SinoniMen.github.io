@@ -1508,10 +1508,10 @@ to{left:0;width:100%;}
 .lock-panelWrapper .input-group-btn:focus{background-color:#323d46;border-bottom:2px solid #647888;}
 @media (max-width:439px){.lock-panelWrapper{width:auto;}
 }
-.page-error{padding:12% 15px 0 15px;text-align:center;}
+.page-error{text-align:center;}
 .page-error img{width:120px;}
 .page-error h1{color:#fff;margin:10px 0 -10px 0;font-size:6rem;}
-.page-error h2{color:#5444b4;margin:10px 0;font-size:4rem;}
+.page-error h2{color:#00A9E8;margin:10px 0;font-size:4rem;}
 .page-error p{margin:0 0 10px;font-weight:400;font-size:1.4rem;color:#6a7c8a;}
 .page-error p>a{color:#7a64ff;text-decoration:none;}
 .page-error p>a:hover{text-decoration:none;color:#8773ff;}

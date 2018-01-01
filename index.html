@@ -92,14 +92,14 @@
     <div class="row">
         <div class="buttons-box col-xs-12">
             <div class="form-group">
-                <textarea class="form-control" rows="6" id="sinoni" placeholder="Ваш текст не больше 250 символов ..."></textarea>
+                <textarea class="form-control" rows="6" id="text-sinoni" placeholder="Ваш текст не больше 250 символов ..."></textarea>
             </div>
             <div class="row">
                 <div class="col-xs-8" style="padding-top: 8px;">
-                    <span class="text-muted">Символов: 0 | Уникальность: 0%</span>
+                    <span class="text-muted">Символов: <span id="symbol">0</span> | Уникальность: <span id="uniqueness">0</span>%</span>
                 </div>
                 <div class="col-xs-4">
-                    <a class="btn btn-out-success btn-block" id="start-sinoni">Рерайт текста онлайн</a>
+                    <a href="javascript:void(0)" class="btn btn-out-success btn-block" id="start-sinoni">Рерайт текста онлайн</a>
                 </div>
             </div>
         </div>

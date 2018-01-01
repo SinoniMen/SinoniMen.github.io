@@ -4,3 +4,7 @@ deploy:
   directory: .
 plugins:
   - name: webpage
+  - name: custom-errors
+      options:
+        errors:
+          404: /404.html
