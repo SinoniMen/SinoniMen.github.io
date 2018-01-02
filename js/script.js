@@ -9,9 +9,9 @@ function domLoaded() {
     var text_sinoni = document.querySelector('#text-sinoni');
     if (text_sinoni) {
         var symbol = document.querySelector('#symbol');
-        symbol.textContent = ((text_sinoni.value.replace(/(\s+|<.*?>)/g, '')).length).toString();
+        symbol.textContent = ((text_sinoni.value.replace(/(<.*?>)/g, '')).length).toString();
         text_sinoni.oninput = function () {
-            symbol.textContent = ((this.value.replace(/(\s+|<.*?>)/g, '')).length).toString();
+            symbol.textContent = ((this.value.replace(/(<.*?>)/g, '')).length).toString();
         };
     }
 }
