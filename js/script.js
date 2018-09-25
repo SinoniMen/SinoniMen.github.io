@@ -77,17 +77,20 @@ function req() {
 }
 function httpReq(params, callback) {
     console.log(params);
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('readystatechange', function () {
+    var XHR = ('onload' in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+    var xhr = new XHR();
+    xhr.open('POST', 'https://api.sinoni.men', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
         console.log(this);
-        if (this.readyState === 4) {
+        if (this.readyState === 4 && this.responseText) {
             callback(null, tryParseJSON(this.responseText));
         }
-    });
-    xhr.open('POST', 'https://api.sinoni.men');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
-    xhr.send(params);
+    };
+    xhr.onerror = function() {
+        console.log(this);
+    };
+    xhr.send();
 }
 function tryParseJSON(jsonString) {
     try {
