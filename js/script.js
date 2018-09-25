@@ -17,11 +17,12 @@ function domLoaded() {
 }
 function req() {
     var self = this;
+    var token = 'tolya';
     self.innerText = 'Уникализация ...';
     self.removeEventListener('click', req);
     var text_sinoni = document.querySelector('#text-sinoni');
     if (text_sinoni && text_sinoni.value) {
-        var params = 'lang=ru&text=' + encodeURIComponent(text_sinoni.value);
+        var params = 'lang=ru&token=' + token + '&text=' + encodeURIComponent(text_sinoni.value);
         httpReq(params, function (err, result) {
             if (err) {
                 console.log(err);
@@ -39,13 +40,22 @@ function req() {
                         clearInterval(r);
                         return;
                     }
-                    params = 'id=' + result.result.id;
+                    params = 'token=' + token + '&id=' + result.result.id;
                     httpReq(params, function (err, result) {
                         if (err) {
                             console.log(err);
                             if (err.status !== 400) {
                                 self.innerText = 'Рерайт текста онлайн';
                                 self.addEventListener('click', req);
+                            }
+                            return;
+                        }
+                        else if (result.error && result.error.code) {
+                            if (result.error.code === 181) {
+                                self.innerText = 'Еще готовится ' + ('...').slice(-(i%3));
+                            }
+                            else if (result.error.code === 183) {
+                                self.innerText = 'Ошибка ' + ('...').slice(-(i%3));
                             }
                             return;
                         }
