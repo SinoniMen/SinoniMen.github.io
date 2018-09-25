@@ -77,7 +77,7 @@ function req() {
 }
 function httpReq(params, callback) {
     var http = new XMLHttpRequest();
-    http.open('POST','https://api.sinoni.men',true);
+    http.open('POST','https://api.sinoni.men',false);
     http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200 && http.responseText) {
