@@ -76,19 +76,17 @@ function req() {
     }
 }
 function httpReq(params, callback) {
-    var http = new XMLHttpRequest();
-    http.open('POST','https://api.sinoni.men',false);
-    http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-    http.onreadystatechange = function() {
-        if (http.readyState === 4 && http.responseText) {
-            var res = tryParseJSON(http.responseText);
-            callback(null, res);
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener('readystatechange', function () {
+        if (this.readyState === 4) {
+            callback(null, tryParseJSON(this.responseText));
         }
-        else {
-            callback(http);
-        }
-    };
-    http.send(params);
+    });
+    xhr.open('POST', 'https://api.sinoni.men');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Cache-Control', 'no-cache');
+    xhr.send(params);
 }
 function tryParseJSON(jsonString) {
     try {
