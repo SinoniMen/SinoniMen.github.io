@@ -76,9 +76,10 @@ function req() {
     }
 }
 function httpReq(params, callback) {
+    console.log(params);
     var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
     xhr.addEventListener('readystatechange', function () {
+        console.log(this);
         if (this.readyState === 4) {
             callback(null, tryParseJSON(this.responseText));
         }
