@@ -76,11 +76,9 @@ function req() {
     }
 }
 function httpReq(params, callback) {
-    console.log(params);
     var XHR = ('onload' in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
     xhr.onreadystatechange = function() {
-        console.log(xhr);
         if (xhr.readyState === 4 && xhr.status === 200) {
             callback(null, tryParseJSON(xhr.responseText));
         }
