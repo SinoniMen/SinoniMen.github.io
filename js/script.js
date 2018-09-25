@@ -79,18 +79,15 @@ function httpReq(params, callback) {
     console.log(params);
     var XHR = ('onload' in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
-    xhr.open('POST', 'https://api.sinoni.men', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        console.log(this);
-        if (this.readyState === 4 && this.responseText) {
-            callback(null, tryParseJSON(this.responseText));
+    xhr.onreadystatechange = function() {
+        console.log(xhr);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(null, tryParseJSON(xhr.responseText));
         }
     };
-    xhr.onerror = function() {
-        console.log(this);
-    };
-    xhr.send();
+    xhr.open('POST', 'https://api.sinoni.men', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(params);
 }
 function tryParseJSON(jsonString) {
     try {
