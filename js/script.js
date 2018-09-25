@@ -80,7 +80,7 @@ function httpReq(params, callback) {
     http.open('POST','https://api.sinoni.men',false);
     http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     http.onreadystatechange = function() {
-        if (http.readyState === 4 && http.status === 200 && http.responseText) {
+        if (http.readyState === 4 && http.responseText) {
             var res = tryParseJSON(http.responseText);
             callback(null, res);
         }
